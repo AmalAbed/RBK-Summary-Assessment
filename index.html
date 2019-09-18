@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Reactor Prep Lesson</title>
+  <link rel="stylesheet" type="text/css" href="styycss.css">
 </head>
 <body>
   <h1>Welcome!</h1>
@@ -9,6 +10,17 @@
     <li><strong>Save</strong> the <code>main.js</code> file.</li>
     <li><strong>Refresh</strong> this page. Use CMD-R (Mac) or CTRL-R (Windows/Linux) to do so.</li>
   </ul>
-  <script type="text/javascript" src="main.js"></script>
+
+  <script type="text/javascript" src="main.js">
+	var element = document.getElementsByName('ul');
+	var new_li=documnet.createElement('li');
+	element.append(new_li);	
+
+
+  </script>
+  placeholder: <input type="text" name="placeholder">
+  color: <input type="text" name="color"><br>
+  <button>click here</button><br>
+  <ul></ul>
 </body>
 </html>

@@ -59,7 +59,10 @@ function reduce(array, f, acc) {
 //wordLengths("hello its me") // [5,3,2]
 
 function wordLengths(str) {
-    // TODO: your code here 
+  var strArray = str.split(' ');
+  return map(strArray,function(element){
+    return (element.length);
+  }) 
 }
 
 //=============================================================================
@@ -72,7 +75,14 @@ function wordLengths(str) {
 // countOccurrences("hello, world!", "l"); // 3
 
 function countOccurrences(string, character) {
-    // your code is here
+  var occuresArray = string.split(' ');
+  var counter = 0;
+  return reduce(occuresArray, function(element){
+    if(element.charAt(character) !== -1){
+      counter = counter + 1;
+    }
+    return counter;
+  })
 }
 
 //=============================================================================
@@ -84,7 +94,10 @@ function countOccurrences(string, character) {
 // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
 
 function wordsLongerThanThree(str) {
-    // TODO: your code here 
+  var newArray = str.split(' ');
+  return filter(newArray,function(element){
+    return(element.length > 3);
+  })
 }
 
 //=============================================================================
@@ -99,7 +112,10 @@ function wordsLongerThanThree(str) {
 //repeatString('dog', 3); // => 'dog' + 'dog' + 'dog' => 'dogdogdog'
 
 function repeatString(str, count) { 
- // TODO: your code here 
+  if(count === 0){
+    return '';
+  }
+  return str + repeatString(str, count - 1)
 } 
  
 
@@ -107,12 +123,12 @@ function repeatString(str, count) {
 /*                                  Q5                                       */
 //=============================================================================
 /*
- using closures create a function called makePizza that has the following properties and methods
+ using closures create a function calledmakePizza  that has the following properties and methods
  crust a property represented by a string. ex "thin","thick". 
  size a property represented by a string. ex "M","L".
  numberOfSlice a property that hold the number of slice, ex: 8
  ** the values of all properties will be provided as arguments in the function invocation. 
- addIngredients a function that add a new ingredient to the ingredients property.
+ addIngredients a function that add a new ingredient  to the ingredients property.
  displayIngredients a function that displays a comma separated string of all ingredients. ex: The ingredients are:tomato,mushroom,meat
  bakePizza a function that display a string with your pizza description after 2 seconds. ex "Your thin M 8 slice pizza is done" 
  eatSlice a function that let you eat from the pizza as long as the numberOfSlice is greater than zero and decrease the total number of slices by one.
@@ -129,6 +145,40 @@ function repeatString(str, count) {
 // pizza.eatSlice();
 
 // Write your code here .....
+  function calledmakePizza(crust,size,numberOfSlice){
+    var crustPizaa = crust;
+    var sizPizza = size;
+    var numberOfSlicePizza = numberOfSlice;
+    var ingredientArray = [];
+    return {
+         addIngredients : function(ingredient){
+          ingredientArray.push(ingredient);
+          return ingredientArray;
+        },
+         displayIngredients : function(){
+          var str = 'the integradients are';
+          each(ingredientArray,function(element,i){
+            str += element + ',';
+            return str;
+            })
+          return str;
+        },
+          bakePizza : function(){
+            return 'Youe' +' '+crust +' '+size+' '+numberOfSlice+' '+'Pizza'+' '+'is done';
+            //this code if I want to display after 2 minites but didn't work with me !
+        //  bakePizza : setTimeout(bakePizza(function(){
+        //   alert('Youe' +' '+crust +' '+size+' '+numberOfSlice+' '+'Pizza'+' '+'is done')
+        // }, 120)),
+        },
+         eatSlice : function(){
+          var counter = numberOfSlicePizza;
+          if(numberOfSlice > 0){
+            counter -- ;
+          }
+        }
+    }
+}
+
 
 //=============================================================================
 /*                                  Q6                                      */
@@ -153,8 +203,40 @@ d- Decrement the number of "unread" books
 */
 
 // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
+//Yes I am
 
-// Write your code here .....
+function ReadingList(read,unRead,toRead,currentRead,readBooks){
+  var obj = {};
+  obj.read = read;
+  obj.unRead = unRead;
+  obj.toRead = toRead;
+  obj.currentRead = currentRead;
+  obj.readBooks = readBooks;
+ // obj.addBook = AddBook;
+  //obj.finishCurrentBook = finishCurrentBook
+  obj. AddBook= function(bookName){
+  this.toRead.push(bookName);
+  this.unRead = this.unRead + 1;
+  } 
+  obj.finishCurrentBook = function(){
+  this.readBooks.push(this.currentRead.pop());
+  this.read = this.read + 1;
+  this.currentRead = this.toRead[0];
+  this.unRead = this.unRead - 1;
+}  
+  return obj;
+}
+
+// var AddBook= function(bookName){
+//   this.toRead.push(bookName);
+//   this.unread = this.unread + 1;
+// } 
+// var finishCurrentBook = function(){
+//   this.readBooks.push(this.currentRead);
+//   this.read = this.read + 1;
+//   this.currentRead = this.toRead[0];
+//   this.unRead = this.unRead - 1;
+// }  
 
 //=============================================================================
 /*                                  Q7                                       */
@@ -176,6 +258,35 @@ d- Decrement the number of "unread" books
 
 // Write your code here .....
 
+  function makeSafe(initial){
+    var storageSize = initail;
+    var big = 3;
+    var small = 1;
+    var medium = 2;
+    var acc = [];
+    var sum = 0;
+
+    return{
+      addItem: function(item,storageSize){
+        acc.push(storageSize);
+        each(acc,function(element,i){
+            if(storageSize = 'big'){
+                sum += 3 ;
+              }
+              else if(storageSize = 'medium'){
+                sum +=2;
+              }
+              else{
+                sum +=3
+              }      
+          }
+      )
+        return sum;
+        //if(sum > )
+      },
+
+    }
+  }
 //=============================================================================
 /*                                  Q8                                       */
 //=============================================================================
@@ -216,12 +327,18 @@ d- Decrement the number of "unread" books
 //================================================================================
 // Theoretical questions.
 // 1- In your own words,Why do we use Closures ?
-
+ 
+ // to protect the variable to used by any unauthorized functions, becouse global variables can be modified by any methods
 // 2- In OOP, what does "this" refer to ?
-
+     
+     //refere to the class which the object belong.
 // 3- What is jQuery?
+    //its a JavaScript libaray that contains alot of functions, it minimize the functions which written by javascript, and used for animations and motions 
 
 // 4- what is the diffrence between Closure's methods and The OOP's methods?
+  // OOP can make alot of objects related to the class (instances);
+  // and can reach to the properties of the object.
+  // Closures make the variables closed of any other methods, and you can reach to the variabls using afunction inside the Closure function
 
 
 
